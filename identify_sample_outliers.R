@@ -2,8 +2,7 @@ library(tidyverse)
 library(data.table)
 library(WGCNA)
 library(optparse)
-
-
+library(R.utils)
 ####### COMMAND LINE ARGUMENTS ########
 
 message('Parsing options')
