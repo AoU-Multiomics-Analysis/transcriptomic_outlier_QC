@@ -1,3 +1,5 @@
+message('Script Begin')
+
 library(tidyverse)
 library(data.table)
 library(WGCNA)
