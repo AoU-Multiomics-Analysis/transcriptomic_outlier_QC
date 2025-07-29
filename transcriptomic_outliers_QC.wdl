@@ -1,17 +1,18 @@
 version 1.0
 
 task call_outliers{
-    File TPM_path
-    File Count_path
-    String OutputPrefix 
-    Int Memory
-
-command {
+    input{
+        File TPM_path
+        File Count_path
+        String OutputPrefix 
+        Int Memory
+    }
+command <<<
     Rscript /tmp/identify_sample_outliers.R \
         --TPM_file ${TPM_path} \
         --count_file ${Count_path} \
         --prefix ${OutputPrefix}
-    }
+    >>>
 
 runtime {
         docker: 'evinpadhi/transcriptomic_outlier_qc:latest'        
