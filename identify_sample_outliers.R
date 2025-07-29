@@ -11,16 +11,17 @@ option_list <- list(
                         help="Sample to be used in processing expression marix", metavar = "type"),
     optparse::make_option(c("--count_file"), type="character", default=null,
                         help="sample to be used in processing expression marix", metavar = "type"),
-    optparse::make_option(c("--Prefix"), type="character", default=null,
+    optparse::make_option(c("--prefix"), type="character", default=null,
                         help="sample to be used in processing expression marix", metavar = "type"),
     )
 opt <- optparse::parse_args(optparse::OptionParser(option_list=option_list))
 
+mesage('Loading command line arguments')
 RNAseqQC2_TPMs <- opt$TPM_file 
 RNAseqQC2_counts <- opt$count_file 
 
-outliers_file <- paste0(opt$Prefix,'_connectivity_outliers.tsv')
-all_z_scores_file <- paste0(opt$Prefix,'_connectivity_scores.tsv')
+outliers_file <- paste0(opt$prefix,'_connectivity_outliers.tsv')
+all_z_scores_file <- paste0(opt$prefix,'_connectivity_scores.tsv')
 
 
 ####### BEGIN #########
