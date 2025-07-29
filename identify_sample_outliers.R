@@ -1,5 +1,6 @@
 message('Script Begin')
 
+library(RNOmni)
 library(tidyverse)
 library(data.table)
 library(WGCNA)
@@ -48,7 +49,7 @@ rotated_normalized_TPMs <- TPM_df %>%
     column_to_rownames('Name') %>% 
     t() %>% 
     data.frame() %>% 
-    mutate(across(everything(),~RNOmni::RankNorm(.)))
+    mutate(across(everything(),~RankNorm(.)))
 
 
 ##### COMPUTE OUTLIERS USING WGCNA ######
