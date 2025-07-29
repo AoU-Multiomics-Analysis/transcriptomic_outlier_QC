@@ -9,8 +9,8 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     conda-forge::r-tidyverse \
     conda-forge::datatable \
     conda-forge::r-optparse \
-    bioconda::r-wgcna
-
+    bioconda::r-wgcna \ 
+    conda-forge::r-r.utils
 COPY identify_sample_outliers.R . 
 
 ## Default command to run when the container starts
