@@ -43,13 +43,16 @@ expressed_genes <- transposed_counts %>%
     dplyr::select(where(~ mean(.x > 6) >= 0.2))
 
 message('Normalizing TPMs')
-rotated_normalized_TPMs <- TPM_df %>% 
+normalized_TPMs <- TPM_df %>% 
     filter(Name %in% colnames(expressed_genes)) %>% 
     select(-Description) %>% 
     column_to_rownames('Name') %>% 
     t() %>% 
     data.frame() %>% 
-    mutate(across(everything(),~RankNorm(.)))
+    mutate(across(everything(),~RankNorm(.))) %>% 
+    t() %>% 
+    data.frame()
+
 
 
 ##### COMPUTE OUTLIERS USING WGCNA ######
@@ -57,7 +60,7 @@ rotated_normalized_TPMs <- TPM_df %>%
 # compute connectivity score by calculating correlation 
 # of all samples with each other and then Z-scoring the data
 message('Computing correlation matrix')
-norm_adj <- (0.5 + 0.5 * bicor(rotated_normalized_TPMs))
+norm_adj <- (0.5 + 0.5 * bicor(normalized_TPMs) )
 
 message('Computing network')
 net_summary <- fundamentalNetworkConcepts(norm_adj)
