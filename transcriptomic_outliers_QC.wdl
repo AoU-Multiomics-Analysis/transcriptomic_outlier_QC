@@ -9,9 +9,9 @@ task call_outliers{
     }
 command <<<
     Rscript /tmp/identify_sample_outliers.R \
-        --TPM_file ${TPM_path} \
-        --count_file ${Count_path} \
-        --prefix ${OutputPrefix}
+        --TPM_file ~{TPM_path} \
+        --count_file ~{Count_path} \
+        --prefix ~{OutputPrefix}
     >>>
 
 runtime {
